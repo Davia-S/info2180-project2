@@ -28,41 +28,42 @@ window.onload = function ()
 }    
 
 
-function mouseHover() //applies style changes when a mouse hovers over puzzle piece
+function mouseHover() //applies style changes when mouse moves over puzzle pieces
 {
-    if (checkMove(parseInt(this.innerHTML)))
+    if (checkMove(parseInt(this.innerHTML))) 
     {
         this.style.border = "2px solid red"; 
         this.style.color = "#006600"; 
         this.style.textDecoration = "underline"; 
-        this.style.backgroundImage="url('background.jpg')"; 
+	this.style.backgroundImage="url('background.jpg')"; 
     }
+
 }
    
 
 function mouseOut() //applied when mouse moves out of puzzle piece
 {
-    this.style.border = "2px solid black"; //reverts to its original size border 
-    this.style.color = "#000000"; //reverts to original text color
-    this.style.textDecoration = "none"; //reverts to original text state
+    this.style.border = "2px solid black";  
+    this.style.color = "#000000"; 
+    this.style.textDecoration = "none"; 
 }
 
 
 function moves() //applied when mouse clicks on a puzzle piece
 {
-    if (checkMove(parseInt(this.innerHTML))) 
+    if (checkMove(parseInt(this.innerHTML))) //checks if a puzzle piece can move into an empty space
     {
         swap(this.innerHTML-1); 
-        if (finish())
+        if (finish()) 
         {
-            alert('You are a winner!'); 
+            alert('You are a winner!');
         }
         return;
     }
 }
 
 
-function shuffler() //activates whenever the shuffle button is clicked
+function shuffler() //applied when the shuffle button is clicked
 {
 
     for (let i=0; i<300; i++) 
@@ -125,13 +126,14 @@ function checkMove(position) // returns true whenever a piece can be moved into 
 }
 
 
-function finish() //checks if all puzzle pieces are in the correct position
+function finish() //checks when all the pieces are in their correct position
 {
 	let flag = true;
-	for (let i = 0; i < pieces.length; i++) /{
+	for (let i = 0; i < pieces.length; i++) 
+	{
 		let top = parseInt(pieces[i].style.top);
 		let left = parseInt(pieces[i].style.left);
-		if (left != (i%4*100) || top != parseInt(i/4)*100)
+		if (left != (i%4*100) || top != parseInt(i/4)*100) //checks if each piece matches its left and top position
 		{
 			flag = false;
 			break;
